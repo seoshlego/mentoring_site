@@ -10,6 +10,7 @@
             --primary: #2563eb; --bg: #f1f5f9; --card: #ffffff;
             --text: #1e293b; --text-light: #64748b;
             --accent: #f59e0b;
+            --success: #10b981;
         }
         body { font-family: 'Pretendard', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
         header { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 3rem 1rem; text-align: center; }
@@ -29,6 +30,9 @@
         .fade-in { animation: fadeIn 0.3s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        .tip-box { background: #f8fafc; padding: 1.2rem; border-radius: 10px; margin: 1.5rem 0; border-left: 4px solid var(--primary); }
+        .important { color: #2563eb; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -62,7 +66,47 @@
         },
         'plan': {
             title: '📅 학습 계획표 짜는 법',
-            text: '1. 가용 시간 파악 <br> 2. 과목별 우선순위 설정...'
+            text: `
+                <p>고등학교 공부는 양이 진짜 많아서 플래너는 거의 필수라고 생각하는데요. 특히 무작정 시작하기보다 시간을 어떻게 쓸지 '전략'을 잘 짜는 게 중요합니다.</p>
+                
+                <div class="tip-box">
+                    <h3 style="margin-top:0;">1. 계획은 "다 끝낼 수 있을 만큼"만</h3>
+                    <p>의욕 앞서서 하루 12시간씩 계획 꽉 채우는 친구들 많은데요. 그러면 금방 지치고, 계획 밀리면 공부하기 싫어집니다.</p>
+                    <ul>
+                        <li><b>80%만 채우기:</b> 내가 할 수 있는 양의 7~80% 정도로만 여유 있게 짜보세요.</li>
+                        <li><b>성취감 챙기기:</b> 계획을 빨리 끝내고 남는 시간에 못 넣었던 공부를 채우는 게 훨씬 기분 좋고 오래 갑니다.</li>
+                    </ul>
+                    <p style="text-align: center; font-weight: bold; color: #1e40af; background: #e0e7ff; padding: 10px; border-radius: 8px;">
+                        "12시간짜리 계획 세우다 포기하는 것보다,<br>8시간짜리 계획을 완벽히 끝내는 게 장기적으로 훨씬 이득입니다."
+                    </p>
+                </div>
+
+                <div class="tip-box" style="border-left-color: var(--accent);">
+                    <h3 style="margin-top:0;">2. 큰 그림 먼저 보고, 그다음 쪼개기</h3>
+                    <p>단순히 '오늘 뭐 하지?'만 고민하지 말고, 시험 날짜부터 거꾸로 계산해 보세요.</p>
+                    <ul>
+                        <li><b>전체 할 일 적기:</b> 시험 범위 인강, 교과서 필기 회독, 문제집 리스트를 일단 다 뽑으세요.</li>
+                        <li><b>주 단위로 나누기:</b> "이번 주엔 인강 1단원 끝내기", "다음 주엔 문제집 1회독" 이런 식으로 큰 목표를 먼저 잡으세요.</li>
+                        <li><b>하루치로 분배:</b> 그 주간 목표를 달성하기 위해 오늘 얼마나 해야 할지 나눠서 적으면 끝입니다.</li>
+                    </ul>
+                    <p style="text-align: center; font-weight: bold; color: #92400e; background: #fffbeb; padding: 10px; border-radius: 8px;">
+                        "나한테 주어진 총량이 얼마인지 정확히 알고 있어야<br>불안하지 않게 시험 준비를 할 수 있습니다."
+                    </p>
+                </div>
+
+                <div class="tip-box" style="border-left-color: var(--success);">
+                    <h3 style="margin-top:0;">3. 내 "진짜 공부 시간" 확인하기</h3>
+                    <p>하루에 공부할 수 있는 시간은 매일 달라요. 무턱대고 적지 말고 오늘 내 스케줄을 먼저 보세요.</p>
+                    <ul>
+                        <li><b>가용 시간 계산:</b> 학원 시간, 잠자는 시간을 빼면 내가 쓸 수 있는 '진짜 시간'이 나옵니다.</li>
+                        <li><b>예시:</b> 학원이 있는 날은 5시간, 없는 날은 8시간 등으로 다르겠죠?</li>
+                        <li><b>목표 설정:</b> 계산한 가용 시간에서 <b>2시간 정도 뺀 시간</b>을 공부 목표로 잡는 게 가장 현실적입니다.</li>
+                    </ul>
+                    <p style="text-align: center; font-weight: bold; color: #065f46; background: #d1fae5; padding: 10px; border-radius: 8px;">
+                        "내 하루 이용 가능 시간을 알고 있어야<br>하루 계획을 훨씬 알차게 세울 수 있습니다."
+                    </p>
+                </div>
+            `
         },
         'time': {
             title: '⏰ 학습 시간 늘리는 법',

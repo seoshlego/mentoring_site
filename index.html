@@ -3,35 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>후배들을 위한 학습 가이드</title>
+    <title>백현고 학습 가이드</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     <style>
-        :root { --primary-color: #3498db; --dark-color: #2c3e50; }
-        body { font-family: 'Pretendard', sans-serif; margin: 0; background: #f4f7f9; color: #333; }
-        header { background: var(--dark-color); color: white; padding: 3rem 1rem; text-align: center; }
-        .container { max-width: 900px; margin: -30px auto 50px; padding: 0 20px; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        h2 { color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .btn { display: inline-block; background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 10px; }
+        :root { 
+            --primary: #2563eb; --bg: #f1f5f9; --card: #ffffff;
+            --text: #1e293b; --text-light: #64748b;
+            --accent: #f59e0b;
+        }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        header { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 3rem 1rem; text-align: center; }
+        .container { max-width: 700px; margin: -30px auto 60px; padding: 0 20px; }
+        #main-menu { display: flex; flex-direction: column; gap: 12px; }
+        .nav-btn { 
+            background: var(--card); padding: 20px; border-radius: 12px; cursor: pointer;
+            border: 1px solid #e2e8f0; font-weight: 600; font-size: 1.1rem;
+            display: flex; justify-content: space-between; transition: 0.2s;
+        }
+        .nav-btn:hover { border-color: var(--primary); transform: translateX(5px); color: var(--primary); }
+        .intro-btn { border-left: 5px solid var(--accent); }
+        .content-page { display: none; background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: var(--primary); font-weight: bold; cursor: pointer; }
+        .content-body { line-height: 1.8; font-size: 1.05rem; }
+        h2 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        a { color: var(--primary); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>📖 후배들을 위한 지식 저장소</h1>
-        <p>컴퓨터공학과 지망 선배가 직접 제작한 학습 가이드입니다.</p>
-    </header>
 
-    <div class="container">
-        <section class="card">
-            <h2>🎯 프로젝트 취지</h2>
-            <p>혼자 고민하며 겪었던 시행착오들을 후배들은 겪지 않길 바라는 마음으로 제작했습니다. 진심으로 응원합니다!</p>
-        </section>
+<header>
+    <h1>📖 백현고 선배의 공부 길잡이</h1>
+    <p>컴퓨터공학과 지망 선배가 전하는 학습 가이드</p>
+</header>
 
-        <section class="card">
-            <h2>📚 과목별 공부 전략</h2>
-            <p>이곳에 실제 공부법 내용을 채워 넣으세요. (예: 수학 오답노트 작성법 등)</p>
-            <a href="#" class="btn">더 알아보기</a>
-        </section>
+<div class="container">
+    <div id="main-menu" class="fade-in">
+        <div class="nav-btn intro-btn" onclick="showPage('intro')">👤 선배 소개 및 프로젝트 취지 <span>→</span></div>
+        <div class="nav-btn" onclick="showPage('plan')">📅 학습 계획표 짜는 법 <span>→</span></div>
+        <div class="nav-btn" onclick="showPage('time')">⏰ 학습 시간 늘리는 법 <span>→</span></div>
+        <div class="nav-btn" onclick="showPage('vacation')">🏝️ 방학 & 학기 중 공부 팁 <span>→</span></div>
+        <div class="nav-btn" onclick="showPage('subject')">📒 과목별 공부법 팁 <span>→</span></div>
+        <div class="nav-btn" onclick="showPage('exam')">📝 시험기간 공부법 팁 <span>→</span></div>
     </div>
+
+    <div id="content-page" class="content-page">
+        <div class="back-btn" onclick="showMain()">← 목록으로 돌아가기</div>
+        <div id="content-area" class="content-body"></div>
+    </div>
+</div>
+
+<script>
+    const data = {
+        'intro': {
+            title: '👤 선배 소개',
+            text: '안녕하세요! 저는 컴퓨터공학과를 지망하는 백현고 3학년 9반 서승훈입니다. <br><br> <b>3년 성적:</b> 9등급제 1.17 / 5등급제 1.0 / 전교3등 <br> <b>취지:</b> 고등학교 생활이 낯선 후배들이 겪는 시행착오를 줄이고, 함께 성장하는 학교 문화를 만들기 위해 이 사이트를 직접 개발했습니다.<br><br>궁금한 점은 언제든 인스타 <a href="https://www.instagram.com/s.sh_0521/" target="_blank">@s.sh_0521</a> 로 편하게 질문 주세요!'
+        },
+        'plan': {
+            title: '📅 학습 계획표 짜는 법',
+            text: '1. 가용 시간 파악 <br> 2. 과목별 우선순위 설정...'
+        },
+        'time': {
+            title: '⏰ 학습 시간 늘리는 법',
+            text: '5/22 추가 예정입니다.'
+        },
+        'vacation': {
+            title: '🏝️ 방학 & 학기 중 공부 팁',
+            text: '5/29 추가 예정입니다.'
+        },
+        'subject': {
+            title: '📒 과목별 공부법 팁',
+            text: '6/5 추가 예정입니다.'
+        },
+        'exam': {
+            title: '📝 시험기간 공부법 팁',
+            text: '6/12 추가 예정입니다.'
+        }
+    };
+
+    function showPage(key) {
+        const item = data[key];
+        document.getElementById('main-menu').style.display = 'none';
+        document.getElementById('content-page').style.display = 'block';
+        document.getElementById('content-page').classList.add('fade-in');
+        
+        document.getElementById('content-area').innerHTML = `
+            <h2>${item.title}</h2>
+            <div class="content-body">${item.text}</div>
+        `;
+        window.scrollTo(0, 0);
+    }
+
+    function showMain() {
+        document.getElementById('content-page').style.display = 'none';
+        document.getElementById('main-menu').style.display = 'flex';
+        document.getElementById('main-menu').classList.add('fade-in');
+    }
+</script>
+
 </body>
 </html>
